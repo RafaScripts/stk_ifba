@@ -8,9 +8,54 @@ volumes:
   postgres-data:
 
 services:
+  signin:
+    build: ./signin_service
+    container_name: signin_service
+    #entrypoint: ./signin_service/entrypoint.sh
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - stk-net
+    volumes:
+      - ./signin_service:/usr/src/app
+    depends_on:
+      - postgres
+
+  signup:
+    build: ./signup_service
+    container_name: signup_service
+    #entrypoint: ./signin_service/entrypoint.sh
+    restart: always
+    ports:
+      - "3001:3001"
+    networks:
+      - stk-net
+    volumes:
+      - ./signup_service:/usr/src/app
+    depends_on:
+      - postgres
+      - signin
+
+  prices:
+    build: ./prices_service
+    container_name: prices_service
+    #entrypoint: ./signin_service/entrypoint.sh
+    restart: always
+    ports:
+      - "3002:3002"
+    networks:
+      - stk-net
+    volumes:
+      - ./prices_service:/usr/src/app
+    depends_on:
+      - postgres
+      - signin
+      - signup
+
   postgres:
     image: postgres
-    container_name: bd_soil
+    container_name: bd_stk
     hostname: postgres
     networks:
       - stk-net
