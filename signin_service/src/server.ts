@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import prisma from "./database";
-import {SingUp} from "./controller";
+import {SingIn} from "./controller";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,12 +14,12 @@ app.use(cors(
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-  const data = await prisma.User.findMany();
+  const data = await prisma.user.findMany();
 
   return res.json(data);
 });
 
-app.post('/api/v1/signup', SingUp);
+app.post('/api/v1/signin', SingIn);
 
 app.listen(
   PORT,

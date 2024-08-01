@@ -1,0 +1,20 @@
+version: '3.8'
+
+networks:
+  stk-net:
+    external: true
+
+volumes:
+  postgres-data:
+
+services:
+  postgres:
+    image: postgres
+    container_name: bd_soil
+    hostname: postgres
+    networks:
+      - stk-net
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=032211

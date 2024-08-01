@@ -13,12 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id String @id @default(uuid())
-  name String
-  email String
-  password String
+model user {
+  id             String   @id @default(uuid())
+  name           String
+  email          String
+  password       String
   wallet_address String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
+}
+
+model prices {
+  id        String   @id @default(uuid())
+  coin      String
+  price     String
+  change    String
+  iconUrl   String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }

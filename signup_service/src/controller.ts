@@ -6,10 +6,17 @@ export async function SingUp(req: Request, res: Response) {
 
   try {
 
+    const exist = await prisma.user.findMany({
+      where: {email: email}
+    });
+
+    if (exist) {
+      return res.status(409).json({error: "Email already exists!!"});
+    }
 
     const data = {name, email, password, wallet_address: address};
 
-    const created = await prisma.User.create({
+    const created = await prisma.user.create({
       data: data
     });
 
