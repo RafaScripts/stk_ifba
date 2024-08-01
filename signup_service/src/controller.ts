@@ -3,18 +3,19 @@ import prisma from "./database";
 
 export async function SingUp(req: Request, res: Response) {
   const {name, email, password, address} = req.body;
+  console.log("corpo: ", req.body);
 
   try {
 
-    const exist = await prisma.user.findMany({
+    /*const exist:any = await prisma.user.findMany({
       where: {email: email}
     });
 
-    if (exist) {
+    if (exist.length > 0) {
       return res.status(409).json({error: "Email already exists!!"});
-    }
+    }*/
 
-    const data = {name, email, password, wallet_address: address};
+    const data = {name: name, email: email, password: password, wallet_address: address};
 
     const created = await prisma.user.create({
       data: data
@@ -23,6 +24,7 @@ export async function SingUp(req: Request, res: Response) {
     return res.json(created);
 
   }catch (e: any) {
+    console.log(e);
     return res.status(400).send(e);
   }
 }

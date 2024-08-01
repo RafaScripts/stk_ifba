@@ -32,6 +32,7 @@ async function getPrices() {
     }
 }
 
+
 app.listen(
   PORT,
   () => {

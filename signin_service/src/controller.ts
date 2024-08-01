@@ -11,11 +11,15 @@ export async function SingIn(req: Request, res: Response) {
       where: {email: email}
     });
 
-    if(!user || (user[0].password != password)){
-      return res.status(401).json({error: "Invalid credentials!!"});
-    }
+    console.log(user);
 
-    return res.json(user[0]);
+    /*if((user.length = 0) || (user[0].password !== password)){
+      return res.status(401).json({error: "Invalid credentials!!"});
+    }*/
+
+    console.log(user[0])
+
+    return res.status(200).json(user[0]);
 
 
   }catch (e: any) {
