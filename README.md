@@ -10,7 +10,7 @@ Clone o projeto do github
 
 execute o comando a baixo para criar a subrede do docker para o projeto
 ``` bash
-docker network create --driver bridge --subnet 172.20.0.0/16 soil-net
+docker network create --driver bridge --subnet 172.20.0.0/16 stk-net
 ```
 
 agora temos 2 opções para roda o projeto, a primeira ira mostrar todos os logs do projeto e a segunda ira rodar em segundo plano.
